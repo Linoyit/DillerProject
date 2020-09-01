@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".GameActivity"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/progress_bar_details"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="9"
+                android:minHeight="50dp"
+                android:progress="0"
+                android:indeterminate="false"
+                style="?android:attr/progressBarStyleHorizontal"
+                />
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                tools:text="7/10"
+                android:textColorHint="@color/grey"
+                android:textSize="14sp"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="22sp"
+            android:layout_height="wrap_content"
+            tools:text="איפה לא הינו יחד עם האמריקאים?"/>
+
+        <ImageView
+            android:id="@+id/imageView_trivia"
+            android:layout_width="wrap_content"
+            android:layout_height="229dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/time" />
+
+        <VideoView
+            android:id="@+id/videoView_trivia"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="229dp" />
+
+        <TextView
+            android:id="@+id/q1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trivia_button_shape"
+            android:clickable="true"
+            android:gravity="center"
+            android:focusable="true"
+            android:padding="16dp"
+            android:textSize="16sp"
+            tools:text="חוף הים" />
+
+        <TextView
+            android:id="@+id/q2"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trivia_button_shape"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            tools:text="ים המלח" />
+
+
+        <TextView
+            android:id="@+id/q3"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:background="@drawable/trivia_button_shape"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            tools:text="ים המלח" />
+
+        <TextView
+            android:id="@+id/q4"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/trivia_button_shape"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            tools:text="ים המלח" />
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="@string/submit"
+            />
+    </LinearLayout>
+
+</ScrollView>

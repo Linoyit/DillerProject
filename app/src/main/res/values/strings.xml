@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ברוכים הבאים לחגיגת העשור שלנו</string>
+    <string name="gallery">גלריה</string>
+    <string name="game">בואו נשחק</string>
+    <string name="our_plan">התוכנית שלנו</string>
+    <string name="personalNote">עד לפעם הבאה, נשיקות וחיבוקים</string>
+    <string name="celebrateTitle">איפה חוגגים ?</string>
+    <string name="send">שלח</string>
+    <string name="volunteerHour">שעה:   12:00</string>
+    <string name="volunteerTitle">איפה מתנדבים?</string>
+    <string name="volunteerLocation"> מיקום:   משפחתון אור שלום</string>
+    <string name="celHour">שעה:   20:00</string>
+    <string name="celLocation">מיקום:   חוחית 1, אשקלון</string>
+    <string name="directionLink"> נווט אותי</string>
+    <string name="sign_out">התנתק</string>
+    <string name="submit">שלח</string>
+    <string name="yourScore">התוצאה שלך היא:</string>
+    <string name="scoreNum">7/10</string>
+    <string name="Done">סיימנו! :)</string>
+    <string name="close">סגור</string>
+    <string name="morePics">עוד קצת תמונות</string>
+</resources>
