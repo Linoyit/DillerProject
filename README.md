@@ -1,12 +1,12 @@
 # DillerProject
 
-Created for the reunion event of Diller 2010 group.
+Created voluntarily for the reunion event of Diller 2010 group.
 
 Were they can access:
 
-	1. The event itinerary + navigation
+	1. The event itinerary + use navigation
 	2. Upload photos to a shared gallery
-	3. Play a nostalgic trivia game that includes questions about the experiences they shared together.
+	3. Play a nostalgic trivia game that includes questions about experiences they shared together.
 
 **open source
 
