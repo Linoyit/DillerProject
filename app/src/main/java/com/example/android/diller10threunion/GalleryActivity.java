@@ -212,13 +212,13 @@ public class GalleryActivity extends AppCompatActivity{
                         Message message = new Message(uri.toString());
                         mMessageDatabaseReference.push().setValue(message);
                         Toast.makeText(GalleryActivity.this,
-                                "Upload successful", Toast.LENGTH_SHORT).show();
+                                "העלאה הושלמה", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getApplicationContext(),
-                                "Upload failed. Please try again",
+                                "העלאה נכשלה. נסה שנית",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
@@ -227,7 +227,7 @@ public class GalleryActivity extends AppCompatActivity{
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(GalleryActivity.this,
-                        "No file selected. please try again",
+                        "לא נבחר קובץ, בבקשה נסה שוב",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -260,14 +260,14 @@ public class GalleryActivity extends AppCompatActivity{
                             @Override
                             public void onSuccess(Void aVoid) {
                                 mMessageDatabaseReference.child(selectedKey).removeValue();
-                                Toast.makeText(GalleryActivity.this, "Item deleted",
+                                Toast.makeText(GalleryActivity.this, "התמונה נמחקה",
                                         Toast.LENGTH_SHORT).show();
                                 mMessageAdapter.remove(message);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(GalleryActivity.this, "Item not found",
+                                Toast.makeText(GalleryActivity.this, "התמונה לא נמצאה. נסה שנית",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });

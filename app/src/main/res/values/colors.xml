@@ -9,5 +9,12 @@
     <color name="grey">#838b83</color>
     <color name="wrongAnswerRed">#d32f2f</color>
     <color name="correctAnswerGreen">#00c853</color>
+    <color name="orange">#ffa726</color>
+    <color name="indigo">#283593</color>
+    <color name="pink">#e91e63</color>
+    <color name="red">#f44336</color>
+    <color name="purple">#ab47bc</color>
+    <color name="yellow">#ffeb3b</color>
+    <color name="brown">#795548</color>
 
 </resources>

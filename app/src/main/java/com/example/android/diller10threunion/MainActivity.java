@@ -97,6 +97,13 @@ public class MainActivity extends AppCompatActivity{
             onSignedOutCleanup();
             return true;
         }
+        if (item.getItemId() == R.id.chat_menu) {
+            // TODO implement open activity and run chat
+            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            intent.putExtra("user_name", mUserName);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

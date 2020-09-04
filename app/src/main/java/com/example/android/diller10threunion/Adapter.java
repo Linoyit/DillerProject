@@ -55,6 +55,7 @@ public class Adapter extends ArrayAdapter<Message> {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.
                     activity_item, parent, false);
         }
+
         ImageView photoImageView = convertView.findViewById(R.id.photoImageView);
         Message message = messages.get(position);
         boolean isPhoto = message.getPhotoUrl() != null;
