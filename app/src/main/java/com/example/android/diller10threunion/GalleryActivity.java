@@ -78,7 +78,7 @@ public class GalleryActivity extends AppCompatActivity{
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
-        mMessageDatabaseReference = mFirebaseDatabase.getReference().child("messages");
+        mMessageDatabaseReference = mFirebaseDatabase.getReference().child("photos");
         mStorageReference = mFirebaseStorage.getReference().child("gallery_photos");
         gridView = findViewById(R.id.images_gridView);
         mMessages = new ArrayList<>();
@@ -155,15 +155,7 @@ public class GalleryActivity extends AppCompatActivity{
                 }
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot,
-                                           @Nullable String previousChildName) {
-                    for (DataSnapshot postSnapshot : snapshot.getChildren()){
-                        Message message = postSnapshot.getValue(Message.class);
-                        mMessages.add(message);
-                        mMessageAdapter = new Adapter(GalleryActivity.this,
-                                R.layout.activity_item, mMessages);
-                        gridView.setAdapter(mMessageAdapter);
-                    }
-                }
+                                           @Nullable String previousChildName) {}
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                     Message message = snapshot.getValue(Message.class);
@@ -267,7 +259,8 @@ public class GalleryActivity extends AppCompatActivity{
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(GalleryActivity.this, "התמונה לא נמצאה. נסה שנית",
+                                Toast.makeText(GalleryActivity.this,
+                                        "התמונה לא נמצאה. נסה שנית",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });

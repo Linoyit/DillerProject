@@ -6,7 +6,7 @@
     </item>
     <item
         android:id="@+id/chat_menu"
-        android:icon="@drawable/baseline_message_black_18dp"
+        android:icon="@drawable/baseline_message_white_18dp"
         app:showAsAction="always"
         android:title="@string/chat" />
 </menu>

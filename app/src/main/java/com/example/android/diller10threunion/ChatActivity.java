@@ -37,22 +37,19 @@ public class ChatActivity extends AppCompatActivity {
     private String mUserName;
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        mUserName = getIntent().getStringExtra("user_name");
-
         initViews();
-        List<Message> messages = new ArrayList<>();
-        mChatAdapter = new ChatAdapter(this, R.layout.activity_chat_item, messages);
-
-        mChatListView.setAdapter(mChatAdapter);
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mMessageDatabaseReference = mFirebaseDatabase.getReference().child("chat");
+
+        List<Message> messages = new ArrayList<>();
+        mChatAdapter = new ChatAdapter(this, R.layout.activity_chat_item, messages);
+        mChatListView.setAdapter(mChatAdapter);
+        mUserName = getIntent().getStringExtra("user_name");
 
         mChildEventListener = new ChildEventListener() {
             @Override
@@ -73,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         };
+        mMessageDatabaseReference.addChildEventListener(mChildEventListener);
 
         chatEditTextListener();
         sendButtonListener();
@@ -100,6 +98,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().trim().length() > 0){
                     mSendButton.setEnabled(true);
+                } else {
+                    mSendButton.setEnabled(false);
                 }
             }
             @Override
