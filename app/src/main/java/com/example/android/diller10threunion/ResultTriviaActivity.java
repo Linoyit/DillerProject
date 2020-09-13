@@ -57,11 +57,11 @@ public class ResultTriviaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Integer[] images = new Integer[]
-                        {R.drawable.gal,
-                        R.drawable.feet,
-                        R.drawable.alexfish};
+                        {R.drawable.end1, R.drawable.end4, R.drawable.end7, R.drawable.end6,
+                                R.drawable.farm2, R.drawable.end2, R.drawable.end8,
+                                R.drawable.end3, R.drawable.end5, R.drawable.tongs};
 
-                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(images);
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(images, 1);
                 ViewPager2 viewPager2 = findViewById(R.id.viewPager_morePics);
                 viewPager2.setVisibility(View.VISIBLE);
                 hideViewsForViewPager();

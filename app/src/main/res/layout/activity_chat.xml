@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ListView
         android:id="@+id/listView_chat_activity"
         android:layout_width="match_parent"
         android:stackFromBottom="false"
+        android:paddingTop="5dp"
         android:transcriptMode="alwaysScroll"
         android:background="@color/colorAccent"
+        android:divider="@android:color/transparent"
         tools:listitem="@layout/activity_chat_item"
         android:layout_above="@+id/linearLayout"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/tv_previous_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onPreviousTextClick"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignTop="@id/listView_chat_activity"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shaped_box_desc"
+        android:text="@string/previousTexts" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@drawable/shaped_box_desc"
         android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
@@ -32,12 +52,15 @@
             android:autofillHints="שלח לכולם הודעה"
             android:layout_weight="1" />
 
-        <Button
+        <TextView
             android:id="@+id/sendButton"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
+            android:padding="16dp"
+            android:background="@drawable/shaped_box"
             android:enabled="false"
             android:text="@string/submit"/>
     </LinearLayout>

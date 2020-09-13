@@ -30,7 +30,7 @@ public class PlanActivity extends AppCompatActivity {
         directionVolunteer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMaps("geo:31.663,34.58");
+                openMaps("geo:31.672660,34.559202");
             }
         });
 

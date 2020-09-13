@@ -1,41 +1,40 @@
 package com.example.android.diller10threunion;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.google.firebase.database.Query;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
 public class ChatActivity extends AppCompatActivity {
 
-    private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessageDatabaseReference;
     private ChildEventListener mChildEventListener;
     private ChatAdapter mChatAdapter;
     private ListView mChatListView;
     private EditText mChatEditText;
-    private Button mSendButton;
-    private String mUserName;
+    private TextView mSendButton;
+    private static String mUserName;
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
+    private Integer shownChatMessages = 20;
+    private Query query;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +42,9 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         initViews();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         mMessageDatabaseReference = mFirebaseDatabase.getReference().child("chat");
+        query = mMessageDatabaseReference.orderByKey().limitToLast(shownChatMessages);
 
         List<Message> messages = new ArrayList<>();
         mChatAdapter = new ChatAdapter(this, R.layout.activity_chat_item, messages);
@@ -70,8 +70,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         };
-        mMessageDatabaseReference.addChildEventListener(mChildEventListener);
-
+        query.addChildEventListener(mChildEventListener);
         chatEditTextListener();
         sendButtonListener();
     }
@@ -81,10 +80,18 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Message message = new Message(mUserName, mChatEditText.getText().toString());
+                message.setTime(getTime());
                 mMessageDatabaseReference.push().setValue(message);
                 mChatEditText.setText("");
             }
         });
+    }
+
+    private String getTime(){
+        String date = Calendar.getInstance().getTime().toString();
+        String time = date.split(" ")[3];
+        String[] s = time.split(":");
+        return s[0] + ":" + s[1];
     }
 
     private void chatEditTextListener() {
@@ -112,4 +119,13 @@ public class ChatActivity extends AppCompatActivity {
         mChatEditText = findViewById(R.id.messageEditText);
         mSendButton = findViewById(R.id.sendButton);
     }
+
+    public void onPreviousTextClick(View view) {
+        shownChatMessages = shownChatMessages + 5;
+        query.removeEventListener(mChildEventListener);
+        mChatAdapter.clear();
+        query = mMessageDatabaseReference.orderByKey().limitToLast(shownChatMessages);
+        query.addChildEventListener(mChildEventListener);
+    }
+    public static String getUserName(){return mUserName;}
 }

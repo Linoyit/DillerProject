@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.viewPagerViewHolder>{
 
     private Integer[] images;
+    private Integer id;
 
-    public ViewPagerAdapter(Integer[] images){
+    public ViewPagerAdapter(Integer[] images, Integer id){
+
         this.images = images;
+        this.id = id;
     }
 
     @NonNull
@@ -42,6 +45,9 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.view
         viewPagerViewHolder(View itemView){
             super(itemView);
             morePics = itemView.findViewById(R.id.iv_image);
+            if (id == 1){
+                morePics.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            }
         }
     }
 }

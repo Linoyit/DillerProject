@@ -3,23 +3,17 @@ package com.example.android.diller10threunion;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -35,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -55,9 +50,13 @@ public class MainActivity extends AppCompatActivity{
                 }
             }
         };
+        setViewPager();
+    }
 
+    private void setViewPager(){
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(
-                new Integer[] {R.drawable.beach, R.drawable.time, R.drawable.pic2});
+                new Integer[] {R.drawable.beach, R.drawable.timesquere,
+                        R.drawable.pic2, R.drawable.park_group}, 0);
         ViewPager2 viewPager2 = findViewById(R.id.viewPagerMain);
         viewPager2.setAdapter(viewPagerAdapter);
     }
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.signout, menu);
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
 
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity{
             return true;
         }
         if (item.getItemId() == R.id.chat_menu) {
-            // TODO implement open activity and run chat
             Intent intent = new Intent(MainActivity.this, ChatActivity.class);
             intent.putExtra("user_name", mUserName);
             startActivity(intent);
@@ -133,10 +131,12 @@ public class MainActivity extends AppCompatActivity{
         if (dateToString.contains("Thu Sep 10")){
             String[] timeSplit = time.split(":");
             String hour = timeSplit[0];
-            if (hour.equals("20") || Integer.parseInt(hour) > 20){
+            String minute = timeSplit[1];
+            if ((hour.equals("20") || Integer.parseInt(hour) > 20)
+                    && (minute.equals("15") || Integer.parseInt(minute) > 15)){
                openGameActivity();
             } else {
-                Toast.makeText(this, "Not yet. wait a little longer",
+                Toast.makeText(this, "עדיין לא. תצטרכו לחכות לחגיגות בערב",
                         Toast.LENGTH_LONG).show();
             }
         } else {

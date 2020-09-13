@@ -50,7 +50,6 @@ public class Adapter extends ArrayAdapter<Message> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         if(convertView == null){
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.
                     activity_item, parent, false);

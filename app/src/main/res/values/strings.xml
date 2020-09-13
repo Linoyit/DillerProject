@@ -20,4 +20,7 @@
     <string name="close">סגור</string>
     <string name="morePics">עוד קצת תמונות</string>
     <string name="chat">צ\'אט</string>
+    <string name="changeUserName">שנה שם משתמש</string>
+    <string name="change">שנה</string>
+    <string name="previousTexts">הודעות קודמות</string>
 </resources>

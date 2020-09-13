@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlanActivity"/>
+        <activity android:name=".PlanActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".GalleryActivity"/>
         <activity android:name=".FullScreenSwipe"/>
         <activity android:name=".GameActivity"

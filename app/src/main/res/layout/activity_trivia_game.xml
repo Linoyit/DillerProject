@@ -22,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="9"
+                android:max="26"
                 android:minHeight="50dp"
                 android:progress="0"
                 android:indeterminate="false"
@@ -52,14 +52,14 @@
             android:layout_width="wrap_content"
             android:layout_height="229dp"
             android:layout_margin="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/time" />
+            android:scaleType="fitCenter"
+            />
 
         <VideoView
             android:id="@+id/videoView_trivia"
             android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="229dp" />
+            android:layout_height="400dp" />
 
         <TextView
             android:id="@+id/q1"

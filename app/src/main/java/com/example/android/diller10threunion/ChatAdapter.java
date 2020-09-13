@@ -12,18 +12,26 @@ import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public class ChatAdapter extends ArrayAdapter<Message> {
 
     private int userColor;
+    private String mUserName;
+    private Integer colorCounter = 0;
+    private Integer[] colors = new Integer[] {R.color.purple, R.color.red,
+            R.color.correctAnswerGreen, R.color.indigo, R.color.yellow,
+            R.color.pink, R.color.orange};
+    private HashMap<String, Integer> map;
 
     public ChatAdapter(@NonNull Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
-        Integer[] colors = new Integer[] {R.color.red, R.color.brown,
-                R.color.indigo, R.color.yellow, R.color.pink,R.color.purple, R.color.orange};
-        userColor = colors[new Random().nextInt(colors.length)];
+        mUserName = ChatActivity.getUserName();
+        userColor = colors[colorCounter];
+        map = new HashMap<>();
+        map.put(mUserName, userColor);
     }
 
     @NonNull
@@ -40,16 +48,20 @@ public class ChatAdapter extends ArrayAdapter<Message> {
         Message message = getItem(position);
 
         mUserName.setText(message.getName());
-        mUserName.setTextColor(userColor);
-        mTimeSent.setText(getTime());
+
+        if (!map.containsKey(message.getName())){
+            advanceCounter();
+            int otherColor = colors[colorCounter];
+            map.put(message.getName(), otherColor);
+        }
+        mUserName.setTextColor(map.get(message.getName()));
+
+        mTimeSent.setText(message.getTime());
         mTextMessage.setText(message.getText());
         return convertView;
     }
 
-    private String getTime(){
-        String date = Calendar.getInstance().getTime().toString();
-        String time = date.split(" ")[3];
-        String[] s = time.split(":");
-        return s[0] + ":" + s[1];
+    private void advanceCounter(){
+        colorCounter = (colorCounter + 1) % colors.length;
     }
 }

@@ -12,20 +12,10 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
+import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,15 +39,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private String mUserName = "היי אתה";
 
-//    private FirebaseDatabase mFirebaseDatabase;
-//    private DatabaseReference mQuestionDatabaseReference;
-//    private ChildEventListener mChildEventListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia_game);
-
 
         getWindow().getDecorView().setTag(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
@@ -111,16 +96,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             mImageView.setVisibility(View.GONE);
             mVideo.setVisibility(View.VISIBLE);
-            String videoPath = "android.resource://"+getPackageName()+"/" + q.getVideo();
+
+//            String videoPath = "android.resource://"+getPackageName()+"/" + q.getVideo();
+            String videoPath = q.getVideo();
             Uri uri = Uri.parse(videoPath);
             mVideo.setVideoURI(uri);
 
             MediaController mediaController = new MediaController(this);
             mVideo.setMediaController(mediaController);
             mediaController.setAnchorView(mVideo);
+
+        } else if (q.getImageResource() != null){
+
+            Glide.with(mImageView.getContext())
+                    .load(q.getImageResource())
+                    .fitCenter()
+                    .into(mImageView);
         }
 
-        mImageView.setImageResource(q.getImageResource());
         option1.setText(q.getOptions()[0]);
         option2.setText(q.getOptions()[1]);
         option3.setText(q.getOptions()[2]);
@@ -184,6 +177,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         { mNumberOfCorrectAnswers++; }
                     answerView(question.getAnswer(), R.drawable.correct_option_selected);
                     if (question.getExtraAnswer() != null) {
+                        if (question.getVideo() != null){
+                            mVideo.setVisibility(View.GONE);
+                            mImageView.setVisibility(View.VISIBLE);
+                        }
                         mImageView.setImageResource(question.getExtraAnswer()[0]);
                     }
                     if (mCurrentPosition == mQuestionsList.size()){

@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_viewPager"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_margin="10dp"
@@ -24,6 +25,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_itinerary"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -49,6 +51,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_gallery"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -74,8 +77,8 @@
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 
-
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_game"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
